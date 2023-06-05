@@ -1,6 +1,7 @@
+
 class AjaxManager {
 
-    AjaxAddNpcToQuest(NpcId, QuestId, stepNumber, container, callback) {
+    AddNpcToQuest(NpcId, QuestId, stepNumber, container, callback) {
         const url = 'index.php?page=create-quest-step';
         const data = {
             NPC_Id: NpcId,
@@ -33,7 +34,7 @@ class AjaxManager {
             });
     }
 
-    AjaxRemoveNpcFromQuest(NpcId, QuestId, stepNumber, container, callback) {
+    RemoveNpcFromQuest(NpcId, QuestId, stepNumber, container) {
         const url = 'index.php?page=delete-quest-step';
         const data = {
             NPC_Id: NpcId,
@@ -58,8 +59,9 @@ class AjaxManager {
             })
             .then(data => {
                 container.innerHTML = data;
-                callback();
+                //callback();
                 //console.log(data);
+                //refresh();
             })
             .catch(error => {
                 console.error('Error:', error);

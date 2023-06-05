@@ -1,35 +1,82 @@
-//import AjaxManager from './ajaxManager.js'
+import AjaxManager from './ajaxManager.js'
 import Interface from './Interface.js'
 import Quest from './quest.js'
-
-
+import UsableNpcs from './UsableNpcs.js'
 
 function script() {
 
-    //const ajax = new AjaxManager();
+    const ajax = new AjaxManager();
 
-
-
+    //// CREAT INSTANCES ////
+    // Create quest
     let questArray = document.querySelectorAll('.html-quest-body');
     let questInstances = [];
-
-    questArray.forEach((el, index) => {
+    questArray.forEach((el) => {
         const htmlId = el.dataset.htmlid;
-        const ddbId = el.dataset.ddbid;
-        const penId = el.dataset.penid;
-
-        questInstances.push(new Quest(htmlId, ddbId, penId));
+        questInstances.push(new Quest(htmlId));
     });
 
-    const appInterface = new Interface(questInstances);
+    // Create Usable NPCs
+    let usableNpcArray = document.querySelectorAll('.usable-npcs-body');
+    let usableNpcInstances = [];
+    usableNpcArray.forEach((npc) => {
+        usableNpcInstances.push(new UsableNpcs(npc.dataset));
+    });
 
-    questInstances.forEach((quest) => {
+    // Interface instance
+    let appInterface = new Interface(questInstances, usableNpcInstances);
+    appInterface.unselectQuest();
 
-        document.getElementById(quest.penId).addEventListener('click', () => {
+    //// CALLBACK FROM AJAX ////
+    function refresh() {
+        questInstances.forEach((quest) => {
+            quest.getAllNPC();
+        });
+        appInterface.selectQuest(appInterface.selectedQuest);
+    }
 
+
+    //// EVENT LISTENERS ////
+    appInterface.questInstances.forEach((quest) => {
+        // Select quest
+        quest.penElement.addEventListener('click', () => {
             appInterface.selectQuest(quest);
         });
+        // Unselect quest
+        quest.crossElement.addEventListener('click', function () {
+            appInterface.unselectQuest();
+        });
+        // Remove from quest
+        /*
+        quest.npcs.forEach((npc) => {
+            const icon = document.getElementById(npc.minusIcon);
+
+            icon.addEventListener('click', () => {
+                const NpcId = npc.ddbId;
+                const QuestId = appInterface.selectedQuest.questDdbId;
+                const stepNumber = appInterface.selectedQuest.npcs.length + 1;
+                const container = appInterface.selectedQuest.questNpcSlot;
+                console.log(npc);
+                console.log('hey');
+
+                //ajax.RemoveNpcFromQuest(NpcId, QuestId, stepNumber, container, callback);
+            });
+        });*/
     });
+
+
+    appInterface.usableNpcs.forEach((usableNpc) => {
+        // Add to quest
+        usableNpc.addIconIdElement.addEventListener('click', function () {
+            const NpcId = usableNpc.ddbId;
+            const QuestId = appInterface.selectedQuest.questDdbId;
+            const stepNumber = appInterface.selectedQuest.npcs.length + 1;
+            const container = appInterface.selectedQuest.questNpcSlot;
+
+            ajax.AddNpcToQuest(NpcId, QuestId, stepNumber, container, refresh);
+        });
+    });
+
 
     //console.log(appInterface.questInstances);
 
