@@ -1,0 +1,263 @@
+
+:root {
+    --main-color: #2c3e50;
+    --main-red: #c32929;
+    --main-green: #6dcd78;
+    --main-background: rgb(255, 255, 255);
+    --secondary-background: rgb(194, 194, 194);
+    --dark-background: rgb(46, 46, 46);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0px;
+    font-family: sans-serif;
+    background-color: var(--secondary-background);
+}
+
+
+/*************************************** HEADER **********************************/
+header {
+    background-color: rgb(102, 102, 102);
+    color: white;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0px;
+    z-index: 3;
+    box-shadow: black 1px 1px 2px;
+}
+
+header a {
+    color: inherit;
+    margin: 0px 1rem;
+}
+
+header, h1 {
+    margin: 0px;
+}
+
+/*************************************** MAIN **********************************/
+
+/************ GENERAL ************/
+main {
+    text-align: center;
+    padding: 2rem 0rem;
+}
+
+.none {
+    display: none;
+}
+
+.empty {
+    background-color: var(--dark-background) !important;
+    color: white;
+}
+
+.under-text-1 {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    line-height: 0.8;
+}
+
+.card {
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 5px;
+    box-shadow: black 1px 2px 4px;
+    background-color: var(--main-background);
+}
+
+.activated {
+    background-color: var(--main-green);
+}
+
+.de-activated {
+    background-color: var(--main-red);
+}
+
+.tools {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tools svg {
+    color: black;
+    height: 1.5rem;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.delete svg:hover {
+    color: var(--main-red);
+}
+
+.edit-pen svg:hover {
+    color: var(--main-green);
+}
+
+.close-edit {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+/************ FORM ************/
+
+.form-type-1 {
+    max-width: 500px;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: black 1px 2px 4px;
+    background-color: var(--main-background);
+}
+
+.form-type-1 form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-type-1 form span + span {
+    margin-top: 1rem;
+}
+
+.form-type-1 input[type=submit] {
+    margin: 1rem 0rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+/********** ERRORS ***********/
+
+.errors {
+    color: var(--main-red);
+    margin-bottom: 2rem;
+}
+
+/*************************************** NPC **********************************/
+
+/************ NPC CARDS ************/
+
+.npc-card {
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    border-radius: 5px;
+    box-shadow: black 1px 2px 4px;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--main-background);
+}
+
+.npc-card+.npc-card {
+    margin-top: 1rem;
+}
+
+.npc-card .npc-infos {
+
+    text-align: left;
+    margin-left: 1rem;
+}
+
+.npc-card img {
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+}
+
+.edit-NPC-form {
+    position: absolute;
+    top: 0px;
+    left: 0rem;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-background);
+    padding: 1rem 2rem;
+}
+
+.npc-card form div {
+    margin-bottom: 1rem;
+}
+
+/*************************************** QUEST **********************************/
+.quest-view-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -2rem;
+}
+
+.usable-npcs {
+    position: sticky;
+    top: 4rem;
+    max-height: 90vh;
+}
+
+.quest-list {
+    width: 70%;
+    max-width: 900px;
+}
+
+
+.quest-card {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.quest-card .tools {
+    width: 1.5rem;
+    height: 88%;
+}
+.quest-card .tools .svg {
+    height: 1rem;
+}
+
+.quest-card .info {
+    text-align: left;
+}
+
+.quest-npc-slot {
+    background-color: var(--secondary-background);
+    padding: 0.5rem;
+    max-width: 400px;
+    border-radius: 5px;
+    box-shadow: black 1px 2px 4px inset;
+    margin: auto;
+    max-height: 80vh;
+    overflow: scroll;
+}
+
+.quest-npc-slot::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.quest-npc-slot .npc-card {
+    line-height: 1.2;
+    height: 5rem;
+    min-width: 300px;
+}
+
+.quest-npc-slot .npc-card img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+}
+
+.quest-npc-slot .npc-card + .npc-card {
+    margin-top: 0.5rem;  
+}
+

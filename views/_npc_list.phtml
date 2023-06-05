@@ -1,0 +1,17 @@
+<?php foreach ($NPCs as $npc) : ?>
+    <div class="npc-card">
+        <img src="./public/uploads/NPC_img/<?= $npc['image'] ?>" alt="<?= $npc['name'] ?>'s photo">
+        <div class="npc-infos">
+            <input type="hidden" class="usable-NPC-id" value="<?= $npc['id'] ?>">
+            <p><?= $npc['name'] ?></p>
+            <p>Id: <?= $npc['id'] ?></p>
+        </div>
+        <div class="tools">
+            <div class="add-npc-to-quest edit-pen none">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>

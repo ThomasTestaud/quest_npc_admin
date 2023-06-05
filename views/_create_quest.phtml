@@ -1,0 +1,25 @@
+<div class="form-type-1">
+    <h2>Create new quest</h2>
+    <?php require "views/_errors.phtml" ?>
+    <form action="index.php?page=create-quest" method="POST">
+        <span>
+            <label for="quest-name">Quest Title:</label>
+            <input type="text" name="quest-name" id="quest-name" value="<?php echo isset($_POST['quest-name']) ? $_POST['quest-name'] : ''; ?>">
+        </span>
+        <span>
+            <label for="quest-number">Quest Number:</label>
+            <input type="number" name="quest-number" id="quest-number" value="<?php echo isset($_POST['quest-number']) ? $_POST['quest-number'] : ''; ?>">
+        </span>
+        <span>
+            <label for="quest-money-reward">Money Reward:</label>
+            <input type="number" name="quest-money-reward" id="quest-money-reward" value="<?php echo isset($_POST['quest-money-reward']) ? $_POST['quest-money-reward'] : ''; ?>">
+        </span>
+        <span>
+            <label for="quest-experience-reward">Experience Reward:</label>
+            <input type="number" name="quest-experience-reward" id="quest-experience-reward" value="<?php echo isset($_POST['quest-experience-reward']) ? $_POST['quest-experience-reward'] : ''; ?>">
+        </span>
+        <span>
+            <input type="submit" name="submit" value="Create quest">
+        </span>
+    </form>
+</div>
