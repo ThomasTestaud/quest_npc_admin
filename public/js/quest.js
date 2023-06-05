@@ -13,6 +13,8 @@ class Quest {
     trashElement;
     questNpcSlot;
     npcs; // list of all npcs in this quest
+    questInfo;
+    updateQuestInfo;
 
     constructor(questHtmlId) {
         this.questHtmlId = questHtmlId;
@@ -26,6 +28,8 @@ class Quest {
         this.crossElement = document.getElementById(this.crossId);
         this.trashElement = document.getElementById(this.trashId);
         this.questNpcSlot = document.getElementById(this.questElement.dataset.questnpcslot);
+        this.questInfo = document.getElementById(this.questElement.dataset.questinfo);
+        this.updateQuestInfo = document.getElementById(this.questElement.dataset.updatequestinfo);
     }
 
     getAllNPC() {
@@ -78,9 +82,6 @@ class Quest {
             })
             .then(data => {
                 container.innerHTML = data;
-                //callback();
-                //console.log(data);
-                //refresh();
                 this.getAllNPC();
             })
             .catch(error => {

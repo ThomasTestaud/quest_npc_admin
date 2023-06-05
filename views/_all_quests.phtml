@@ -1,17 +1,48 @@
 <?php foreach ($quests as $quest) : ?>
-    <div class="quest-card card html-quest-body" id="quest<?= $quest['quest_id'] ?>" data-htmlid="quest<?= $quest['quest_id'] ?>" data-ddbid="<?= $quest['quest_id'] ?>" data-penid="pen<?= $quest['quest_id'] ?>" data-crossid="questcross<?= $quest['quest_id'] ?>" data-deletequestid="deletequestid<?= $quest['quest_id'] ?>" data-questnpcslot="questnpcslot<?= $quest['quest_id'] ?>">
+    <div class="quest-card card html-quest-body" id="quest<?= $quest['quest_id'] ?>" data-htmlid="quest<?= $quest['quest_id'] ?>" data-ddbid="<?= $quest['quest_id'] ?>" data-penid="pen<?= $quest['quest_id'] ?>" data-crossid="questcross<?= $quest['quest_id'] ?>" data-deletequestid="deletequestid<?= $quest['quest_id'] ?>" data-questnpcslot="questnpcslot<?= $quest['quest_id'] ?>" data-questinfo="quest-info-<?= $quest['quest_id'] ?>" data-updatequestinfo="update-quest-info-<?= $quest['quest_id'] ?>">
         <div>
-            <h2><?= $quest['quest_name'] ?></h2>
-            <div class="info">
-                <p>Quest Id: <?= $quest['quest_id'] ?></p>
-                <p>Quest Number: <?= $quest['quest_number'] ?></p>
-                <p>Money Reward: <?= $quest['money_reward'] ?></p>
-                <p>Experience Reward: <?= $quest['experience_reward'] ?></p>
+
+            <div id="quest-info-<?= $quest['quest_id'] ?>">
+                <h2><?= $quest['quest_name'] ?></h2>
+                <div class="info">
+                    <p>Quest Id: <?= $quest['quest_id'] ?></p>
+                    <p>Quest Number: <?= $quest['quest_number'] ?></p>
+                    <p>Money Reward: <?= $quest['money_reward'] ?></p>
+                    <p>Experience Reward: <?= $quest['experience_reward'] ?></p>
+                </div>
             </div>
+
+            <div class="none" id="update-quest-info-<?= $quest['quest_id'] ?>">
+                <form action="index.php?page=update-quest" method="POST">
+                    <input type="hidden" name="quest-id" value="<?= $quest['quest_id'] ?>">
+                    <div>
+                        <label for="quest-name<?= $quest['quest_id'] ?>">Quest Title:</label>
+                        <input type="text" name="quest-name" id="quest-name<?= $quest['quest_id'] ?>" value="<?= $quest['quest_name'] ?>">
+                    </div>
+                    <div>
+                        <label for="quest-number<?= $quest['quest_id'] ?>">Quest Number:</label>
+                        <input type="number" name="quest-number" id="quest-number<?= $quest['quest_id'] ?>" value="<?= $quest['quest_number'] ?>">
+                    </div>
+                    <div>
+                        <label for="quest-money-reward<?= $quest['quest_id'] ?>">Money Reward:</label>
+                        <input type="number" name="quest-money-reward" id="quest-money-reward<?= $quest['quest_id'] ?>" value="<?= $quest['money_reward'] ?>">
+                    </div>
+                    <div>
+                        <label for="quest-experience-reward<?= $quest['quest_id'] ?>">Experience Reward:</label>
+                        <input type="number" name="quest-experience-reward" id="quest-experience-reward<?= $quest['quest_id'] ?>" value="<?= $quest['experience_reward'] ?>">
+                    </div>
+                    <div>
+                        <input type="submit" name="submit" value="Update quest">
+                    </div>
+                </form>
+            </div>
+
         </div>
+
         <div class="quest-npc-slot" id="questnpcslot<?= $quest['quest_id'] ?>">
             <?php require 'views/_npc_inside_quest_cards.phtml' ?>
         </div>
+
         <div class="tools">
             <div class="edit-quest-pen edit-pen" id="pen<?= $quest['quest_id'] ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -29,5 +60,6 @@
                 </svg>
             </a>
         </div>
+
     </div>
 <?php endforeach; ?>

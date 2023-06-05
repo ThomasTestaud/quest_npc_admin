@@ -36,6 +36,11 @@ class Interface {
                 el.classList.remove('none');
             });
         });
+        // Show form and hide infos
+        quest.questInfo.classList.add('none');
+        quest.updateQuestInfo.classList.remove('none');
+
+
     }
 
     unselectQuest() {
@@ -53,11 +58,15 @@ class Interface {
                     el.classList.add('none');
                 });
             });
+            // Hide form and show infos
+            quest.questInfo.classList.remove('none');
+            quest.updateQuestInfo.classList.add('none');
         });
         // Hide plus icons
         this.usableNpcs.forEach((npc) => {
             npc.addIconIdElement.classList.add('none');
         });
+
     }
 
 }

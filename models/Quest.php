@@ -50,11 +50,24 @@ class Quest extends Database
         $this->generic($req, $params);
     }
 
-    public function updateQuest(): void
+    public function updateQuest($id, $name, $money_reward, $experience_reward, $quest_number): void
     {
-        $req = "";
 
-        $params = [];
+        $req = "UPDATE `quests` SET 
+                `name`= :name,
+                `money_reward`= :money_reward,
+                `experience_reward`= :experience_reward,
+                `quest_number`= :quest_number
+                WHERE id = :id";
+
+        $params = [
+            'id' => $id,
+            'name' => $name,
+            'money_reward' => $money_reward,
+            'experience_reward' => $experience_reward,
+            'quest_number' => $quest_number,
+
+        ];
 
         $this->generic($req, $params);
     }
