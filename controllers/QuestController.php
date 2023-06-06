@@ -8,11 +8,16 @@ class QuestController
 
     public function getAllQuest()
     {
+        // Get all the npc for the "Usable NPCs" column
+        $Models = new \Models\NPC();
+        $NPCs = $Models->getAllNPC();
+
+        // Get 
+
+        /*
         $Models = new \Models\Quest();
         $QuestArray = $Models->getAllQuest();
 
-        $Models = new \Models\NPC();
-        $NPCs = $Models->getAllNPC();
 
         // Initialise variables
         $quests = [];
@@ -21,12 +26,13 @@ class QuestController
         $lastId = 0;
 
         foreach ($QuestArray as $element) {
+            // Push the new quest only if no already present in the $quests array
             if ($element['quest_id'] != $lastId) {
                 $lastId = $element['quest_id'];
                 $quests[] = [
                     'quest_id' => $element['quest_id'],
                     'quest_number' => $element['quest_number'],
-                    'quest_name' => $element['quest_name'],
+                    'quest_name' => htmlspecialchars($element['quest_name']),
                     'money_reward' => $element['money_reward'],
                     'experience_reward' => $element['experience_reward'],
                 ];
@@ -36,7 +42,7 @@ class QuestController
                 'quest_id' => $element['quest_id'],
                 'step_number' => $element['step_number'],
                 'npc_id' => $element['npc_id'],
-                'npc_name' => $element['npc_name'],
+                'npc_name' => htmlspecialchars($element['npc_name']),
                 'npc_image' => $element['npc_image']
             ];
         }
@@ -44,6 +50,13 @@ class QuestController
         usort($steps, function ($a, $b) {
             return $a['step_number'] <=> $b['step_number'];
         });
+        */
+
+        // Get all quests
+        $Models = new \Models\Quest();
+        $QuestArray = $Models->getAllQuest2();
+
+        // Get all quests
 
         $JavaScript = 'manageQuest.js';
         $template = "views/quest_view.phtml";

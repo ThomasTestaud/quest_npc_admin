@@ -37,19 +37,20 @@ class QuestStepController
 
         $Models = new \Models\QuestStep();
 
-        // Prepare
-        $npcId = $NPC_Id_1;
-        $oldStepNumber  = $step_Number_1;
-        $newStepNumber = $step_Number_2;
-        // Execute
-        $Models->updateQuestStep($npcId, $oldStepNumber, $newStepNumber, $questId);
-
-        // Prepare
-        $npcId = $NPC_Id_2;
-        $oldStepNumber  = $step_Number_2;
-        $newStepNumber = $step_Number_1;
-        // Execute
-        $Models->updateQuestStep($npcId, $oldStepNumber, $newStepNumber, $questId);
+        if ($NPC_Id_1 !== $NPC_Id_2) {
+            // Prepare
+            $npcId = $NPC_Id_1;
+            $oldStepNumber  = $step_Number_1;
+            $newStepNumber = $step_Number_2;
+            // Execute
+            $Models->updateQuestStep($npcId, $oldStepNumber, $newStepNumber, $questId);
+            // Prepare
+            $npcId = $NPC_Id_2;
+            $oldStepNumber  = $step_Number_2;
+            $newStepNumber = $step_Number_1;
+            // Execute
+            $Models->updateQuestStep($npcId, $oldStepNumber, $newStepNumber, $questId);
+        }
 
         // Return the new set of NPCs to the ajax
         $this->fetchNpcSlot($questId);

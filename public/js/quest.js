@@ -38,14 +38,14 @@ class Quest {
         let npcArr = document.querySelectorAll('.quest' + this.questDdbId);
 
         npcArr.forEach((npc) => {
-            const newNpc = [];
+            const newNpc = {};
 
-            newNpc['npcDdbId'] = npc.dataset.npcddbid;
-            newNpc['npcHtmlid'] = npc.dataset.npchtmlid;
-            newNpc['npcStep'] = npc.dataset.npcstep;
-            newNpc['minusIcon'] = npc.dataset.npcminusicon;
-            newNpc['arrowUpIcon'] = document.getElementById(npc.dataset.npcarrowup);
-            newNpc['arrowDownIcon'] = document.getElementById(npc.dataset.npcarrowdown);
+            newNpc.npcDdbId = npc.dataset.npcddbid;
+            newNpc.npcHtmlid = npc.dataset.npchtmlid;
+            newNpc.npcStep = npc.dataset.npcstep;
+            newNpc.minusIcon = npc.dataset.npcminusicon;
+            newNpc.arrowUpIcon = document.getElementById(npc.dataset.npcarrowup);
+            newNpc.arrowDownIcon = document.getElementById(npc.dataset.npcarrowdown);
 
             this.npcs.push(newNpc);
 
@@ -53,7 +53,7 @@ class Quest {
 
             minusIcon.addEventListener('click', () => {
                 //console.log(this.questNpcSlot);
-                this.RemoveNpcFromQuest(newNpc['npcDdbId'], this.questDdbId, newNpc['npcStep'], this.questNpcSlot);
+                this.RemoveNpcFromQuest(newNpc.npcDdbId, this.questDdbId, newNpc.npcStep, this.questNpcSlot);
             });
 
         });
