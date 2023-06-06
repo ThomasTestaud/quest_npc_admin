@@ -23,6 +23,36 @@ class QuestStepController
 
     public function updateQuestStep()
     {
+        $content = file_get_contents("php://input");
+        $data = json_decode($content, true);
+
+        // Sort data
+        $questId = intval($data['quest_Id']);
+
+        $NPC_Id_1 = intval($data['NPC_Id_1']);
+        $step_Number_1 = intval($data['step_Number_1']);
+
+        $NPC_Id_2 = intval($data['NPC_Id_2']);
+        $step_Number_2 = intval($data['step_Number_2']);
+
+        $Models = new \Models\QuestStep();
+
+        // Prepare
+        $npcId = $NPC_Id_1;
+        $oldStepNumber  = $step_Number_1;
+        $newStepNumber = $step_Number_2;
+        // Execute
+        $Models->updateQuestStep($npcId, $oldStepNumber, $newStepNumber, $questId);
+
+        // Prepare
+        $npcId = $NPC_Id_2;
+        $oldStepNumber  = $step_Number_2;
+        $newStepNumber = $step_Number_1;
+        // Execute
+        $Models->updateQuestStep($npcId, $oldStepNumber, $newStepNumber, $questId);
+
+        // Return the new set of NPCs to the ajax
+        $this->fetchNpcSlot($questId);
     }
 
     public function deleteQuestStep()
@@ -60,6 +90,10 @@ class QuestStepController
                 'npc_image' => $element['npc_image']
             ];
         }
+        // Sort $steps array by the 'step_number' column
+        usort($steps, function ($a, $b) {
+            return $a['step_number'] <=> $b['step_number'];
+        });
 
         require 'views/_npc_inside_quest_cards.phtml';
     }

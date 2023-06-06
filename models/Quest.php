@@ -13,7 +13,7 @@ class Quest extends Database
         ON quest_steps.id_quest = quests.id
         LEFT JOIN `npcs`
         ON npcs.id = quest_steps.id_npc
-        ORDER BY quests.id";
+        ORDER BY quest_name";
 
         $params = [];
 

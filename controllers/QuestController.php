@@ -40,6 +40,11 @@ class QuestController
                 'npc_image' => $element['npc_image']
             ];
         }
+        // Sort $steps array by the 'step_number' column
+        usort($steps, function ($a, $b) {
+            return $a['step_number'] <=> $b['step_number'];
+        });
+
         $JavaScript = 'manageQuest.js';
         $template = "views/quest_view.phtml";
         require "views/layout.phtml";

@@ -2,7 +2,7 @@
 foreach ($steps as $step) : ?>
     <?php if ($step['quest_id'] === $quest['quest_id'] && !empty($step['npc_id'])) : $noNpc = false; ?>
 
-        <div class="npc-card quest<?= $quest['quest_id'] ?>" id="npcid<?= $step['npc_id'] ?>" data-npcddbid="<?= $step['npc_id'] ?>" data-npchtmlid="npcid<?= $step['npc_id'] ?>" data-npcstep="<?= $step['step_number'] ?>" data-npcminusicon="minusicon<?= $quest['quest_id'] ?><?= $step['npc_id'] ?><?= $step['step_number'] ?>">
+        <div class="npc-quest-card npc-card quest<?= $quest['quest_id'] ?>" id="npcid<?= $step['npc_id'] ?>" data-npcddbid="<?= $step['npc_id'] ?>" data-npchtmlid="npcid<?= $step['npc_id'] ?>" data-npcstep="<?= $step['step_number'] ?>" data-npcminusicon="minusicon<?= $quest['quest_id'] ?><?= $step['npc_id'] ?><?= $step['step_number'] ?>" data-npcarrowup="npcarrowup<?= $quest['quest_id'] ?><?= $step['npc_id'] ?><?= $step['step_number'] ?>" data-npcarrowdown="npcarrowdown<?= $quest['quest_id'] ?><?= $step['npc_id'] ?><?= $step['step_number'] ?>">
 
             <img src="./public/uploads/NPC_img/<?= $step['npc_image'] ?>" alt="<?= $step['npc_name'] ?>'s photo">
             <div class="npc-infos under-text-1">
@@ -12,6 +12,18 @@ foreach ($steps as $step) : ?>
             </div>
 
             <div class="tools">
+                <div class="change-npc-order">
+                    <div class="edit-pen" id="npcarrowup<?= $quest['quest_id'] ?><?= $step['npc_id'] ?><?= $step['step_number'] ?>">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                        </svg>
+                    </div>
+                    <div class="edit-pen" id="npcarrowdown<?= $quest['quest_id'] ?><?= $step['npc_id'] ?><?= $step['step_number'] ?>">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </div>
+                </div>
                 <div class="remove-npc-from-quest delete" id="minusicon<?= $quest['quest_id'] ?><?= $step['npc_id'] ?><?= $step['step_number'] ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />

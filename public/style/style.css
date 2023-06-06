@@ -59,6 +59,10 @@ main {
     color: white;
 }
 
+.left {
+    text-align: left;
+}
+
 .under-text-1 {
     font-size: 0.8rem;
     opacity: 0.8;
@@ -221,12 +225,28 @@ main {
     width: 1.5rem;
     height: 88%;
 }
+
+.npc-quest-card .tools {
+    margin: 0px;
+    padding: 0px;
+    height: 1rem;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    right: 0rem;
+    margin-top: 1rem;
+}
+.npc-quest-card .tools div {
+    margin-right: 0.5rem;
+}
+
+
 .quest-card .tools .svg {
     height: 1rem;
 }
 
-.quest-card .info {
-    text-align: left;
+.quest-card .left div + div {
+    margin-top: 1rem;
 }
 
 .quest-npc-slot {

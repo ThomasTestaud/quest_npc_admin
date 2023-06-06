@@ -3,8 +3,8 @@
         <div>
 
             <div id="quest-info-<?= $quest['quest_id'] ?>">
-                <h2><?= $quest['quest_name'] ?></h2>
-                <div class="info">
+                <div class="left">
+                    <h2><?= $quest['quest_name'] ?></h2>
                     <p>Quest Id: <?= $quest['quest_id'] ?></p>
                     <p>Quest Number: <?= $quest['quest_number'] ?></p>
                     <p>Money Reward: <?= $quest['money_reward'] ?></p>
@@ -12,7 +12,8 @@
                 </div>
             </div>
 
-            <div class="none" id="update-quest-info-<?= $quest['quest_id'] ?>">
+            <div class="none left" id="update-quest-info-<?= $quest['quest_id'] ?>">
+                <h2>Modify Quest</h2>
                 <form action="index.php?page=update-quest" method="POST">
                     <input type="hidden" name="quest-id" value="<?= $quest['quest_id'] ?>">
                     <div>

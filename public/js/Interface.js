@@ -29,12 +29,16 @@ class Interface {
         this.usableNpcs.forEach((npc) => {
             npc.addIconIdElement.classList.remove('none');
         });
-        // Display minus icons on the nps quest
+        // For the NPC cards inside the quests cards
         quest.npcs.forEach((npc) => {
+            // Display minus icons on the nps quest
             const arr = document.querySelectorAll("#" + npc.minusIcon);
             arr.forEach((el) => {
                 el.classList.remove('none');
             });
+            // Display the arrows
+            npc.arrowUpIcon.classList.remove('none');
+            npc.arrowDownIcon.classList.remove('none');
         });
         // Show form and hide infos
         quest.questInfo.classList.add('none');
@@ -57,6 +61,9 @@ class Interface {
                 arr.forEach((el) => {
                     el.classList.add('none');
                 });
+                // Display the arrows
+                npc.arrowUpIcon.classList.add('none');
+                npc.arrowDownIcon.classList.add('none');
             });
             // Hide form and show infos
             quest.questInfo.classList.remove('none');
@@ -65,6 +72,7 @@ class Interface {
         // Hide plus icons
         this.usableNpcs.forEach((npc) => {
             npc.addIconIdElement.classList.add('none');
+
         });
 
     }

@@ -44,16 +44,53 @@ class Quest {
             newNpc['npcHtmlid'] = npc.dataset.npchtmlid;
             newNpc['npcStep'] = npc.dataset.npcstep;
             newNpc['minusIcon'] = npc.dataset.npcminusicon;
+            newNpc['arrowUpIcon'] = document.getElementById(npc.dataset.npcarrowup);
+            newNpc['arrowDownIcon'] = document.getElementById(npc.dataset.npcarrowdown);
 
             this.npcs.push(newNpc);
 
-            //const ajax = new AjaxManager();
-            const icon = document.getElementById(newNpc['minusIcon']);
+            const minusIcon = document.getElementById(newNpc['minusIcon']);
 
-            icon.addEventListener('click', () => {
+            minusIcon.addEventListener('click', () => {
                 //console.log(this.questNpcSlot);
                 this.RemoveNpcFromQuest(newNpc['npcDdbId'], this.questDdbId, newNpc['npcStep'], this.questNpcSlot);
             });
+
+        });
+
+        this.npcs.forEach((npc, index) => {
+
+            npc.arrowUpIcon.addEventListener('click', () => {
+                if (index > 0) {
+                    // Prepare data
+                    let QuestId = this.questDdbId;
+
+                    let NpcId1 = this.npcs[index].npcDdbId;
+                    let stepNumber1 = this.npcs[index].npcStep;
+
+                    let NpcId2 = this.npcs[index - 1].npcDdbId;
+                    let stepNumber2 = this.npcs[index - 1].npcStep;
+                    // Ajax request
+                    this.SwapNpcSteps(NpcId1, stepNumber1, NpcId2, stepNumber2, QuestId, this.questNpcSlot);
+                }
+            });
+
+
+            npc.arrowDownIcon.addEventListener('click', () => {
+                if (index < this.npcs.length - 1) {
+                    // Prepare data
+                    let QuestId = this.questDdbId;
+
+                    let NpcId1 = this.npcs[index].npcDdbId;
+                    let stepNumber1 = this.npcs[index].npcStep;
+
+                    let NpcId2 = this.npcs[index + 1].npcDdbId;
+                    let stepNumber2 = this.npcs[index + 1].npcStep;
+                    // Ajax request
+                    this.SwapNpcSteps(NpcId1, stepNumber1, NpcId2, stepNumber2, QuestId, this.questNpcSlot);
+                }
+            });
+
         });
     }
 
@@ -63,6 +100,42 @@ class Quest {
             NPC_Id: NpcId,
             quest_Id: QuestId,
             step_Number: stepNumber
+        };
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+
+        fetch(url, requestOptions)
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('Request failed with status:', response.status);
+                }
+            })
+            .then(data => {
+                container.innerHTML = data;
+                this.getAllNPC();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    SwapNpcSteps(NpcId1, stepNumber1, NpcId2, stepNumber2, QuestId, container) {
+        const url = 'index.php?page=update-quest-step';
+        const data = {
+            quest_Id: QuestId,
+
+            NPC_Id_1: NpcId1,
+            step_Number_1: stepNumber1,
+
+            NPC_Id_2: NpcId2,
+            step_Number_2: stepNumber2
         };
         const requestOptions = {
             method: 'POST',
