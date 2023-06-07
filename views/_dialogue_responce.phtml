@@ -4,6 +4,12 @@
 <div class="dialogue-card">
     <img src="./public/uploads/NPC_img/<?= $dialogues['image'] ?>" alt="Photo of <?= $dialogues['name'] ?>">
     <p><?= $dialogues['before_quest'] ?></p>
+    <div class="edit-pen dialogue-pen">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+        </svg>
+    </div>
+
 </div>
 <div class="dialogue-card">
     <p>I'm in the process of completing your quest.</p>
@@ -11,6 +17,11 @@
 <div class="dialogue-card">
     <img src="./public/uploads/NPC_img/<?= $dialogues['image'] ?>" alt="Photo of <?= $dialogues['name'] ?>">
     <p><?= $dialogues['ongoing_quest'] ?></p>
+    <div class="edit-pen dialogue-pen">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+        </svg>
+    </div>
 </div>
 <div class="dialogue-card">
     <p>I just completed your quest!</p>
@@ -18,6 +29,11 @@
 <div class="dialogue-card">
     <img src="./public/uploads/NPC_img/<?= $dialogues['image'] ?>" alt="Photo of <?= $dialogues['name'] ?>">
     <p><?= $dialogues['complete_quest'] ?></p>
+    <div class="edit-pen dialogue-pen">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+        </svg>
+    </div>
 </div>
 <div class="dialogue-card">
     <p>Anything else for me?</p>
@@ -25,4 +41,37 @@
 <div class="dialogue-card">
     <img src="./public/uploads/NPC_img/<?= $dialogues['image'] ?>" alt="Photo of <?= $dialogues['name'] ?>">
     <p><?= $dialogues['after_quest'] ?></p>
+    <div class="edit-pen dialogue-pen">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+        </svg>
+    </div>
+</div>
+<div class="card-2 none" id="dialogues-form">
+    <div class="tools delete" id="dialogue-form-cross-icon">
+        <svg class="delete" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </div>
+    <form action="" method="POST" onsubmit="event.preventDefault();">
+        <span>
+            <label for="before-quest">Before Quest:</label>
+            <textarea name="before-quest" id="before-quest"><?= $dialogues['before_quest'] ?></textarea>
+        </span>
+        <span>
+            <label for="ongoing-quest">Ongoing Quest:</label>
+            <textarea name="ongoing-quest" id="ongoing-quest"><?= $dialogues['ongoing_quest'] ?></textarea>
+        </span>
+        <span>
+            <label for="complete-quest">Complete Quest:</label>
+            <textarea name="complete-quest" id="complete-quest"><?= $dialogues['complete_quest'] ?></textarea>
+        </span>
+        <span>
+            <label for="after-quest">After Quest:</label>
+            <textarea name="after-quest" id="after-quest"><?= $dialogues['after_quest'] ?></textarea>
+        </span>
+        <span>
+            <input type="submit" name="submit" id="submit-dialogues" value="Save dialogues">
+        </span>
+    </form>
 </div>

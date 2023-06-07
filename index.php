@@ -76,19 +76,9 @@ if (array_key_exists('page', $_GET)) {
             $controller->getDialogue();
             break;
 
-        case 'create-dialogue':
-            $controller = new Controllers\DialogueController();
-            $controller->createDialogue();
-            break;
-
         case 'update-dialogue':
             $controller = new Controllers\DialogueController();
             $controller->updateDialogue();
-            break;
-
-        case 'delete-dialogue':
-            $controller = new Controllers\DialogueController();
-            $controller->deleteDialogue();
             break;
 
         default:

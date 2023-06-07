@@ -29,28 +29,16 @@ class QuestStepController
         // Sort data
         $questId = intval($data['quest_Id']);
 
-        $NPC_Id_1 = intval($data['NPC_Id_1']);
-        $step_Number_1 = intval($data['step_Number_1']);
+        $stepId1 = intval($data['step_id_1']);
+        $stepNumber1 = intval($data['step_Number_1']);
 
-        $NPC_Id_2 = intval($data['NPC_Id_2']);
-        $step_Number_2 = intval($data['step_Number_2']);
+        $stepId2 = intval($data['step_id_2']);
+        $stepNumber2 = intval($data['step_Number_2']);
 
         $Models = new \Models\QuestStep();
 
-        if ($NPC_Id_1 !== $NPC_Id_2) {
-            // Prepare
-            $npcId = $NPC_Id_1;
-            $oldStepNumber  = $step_Number_1;
-            $newStepNumber = $step_Number_2;
-            // Execute
-            $Models->updateQuestStep($npcId, $oldStepNumber, $newStepNumber, $questId);
-            // Prepare
-            $npcId = $NPC_Id_2;
-            $oldStepNumber  = $step_Number_2;
-            $newStepNumber = $step_Number_1;
-            // Execute
-            $Models->updateQuestStep($npcId, $oldStepNumber, $newStepNumber, $questId);
-        }
+        $Models->updateQuestStep($stepId1, $stepNumber2);
+        $Models->updateQuestStep($stepId2, $stepNumber1);
 
         // Return the new set of NPCs to the ajax
         $this->fetchNpcSlot($questId);

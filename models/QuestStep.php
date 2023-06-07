@@ -75,16 +75,14 @@ class QuestStep extends Database
         $this->generic($req, $params);
     }
 
-    public function updateQuestStep($npcId, $oldStepNumber, $newStepNumber, $questId): void
+    public function updateQuestStep($stepId, $newStepNumber): void
     {
         $req = "UPDATE `quest_steps` 
                 SET `step_number`= :newStepNumber
-                WHERE id_npc = :npcId AND id_quest = :questId AND step_number = :oldStepNumber";
+                WHERE id = :stepId";
 
         $params = [
-            'npcId' => $npcId,
-            'questId' => $questId,
-            'oldStepNumber' => $oldStepNumber,
+            'stepId' => $stepId,
             'newStepNumber' => $newStepNumber
         ];
 

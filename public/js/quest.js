@@ -72,13 +72,13 @@ class Quest {
                     // Prepare data
                     let QuestId = this.questDdbId;
 
-                    let NpcId1 = this.npcs[index].npcDdbId;
+                    let stepId1 = this.npcs[index].stepId;
                     let stepNumber1 = this.npcs[index].npcStep;
 
-                    let NpcId2 = this.npcs[index - 1].npcDdbId;
+                    let stepId2 = this.npcs[index - 1].stepId;
                     let stepNumber2 = this.npcs[index - 1].npcStep;
                     // Ajax request
-                    this.SwapNpcSteps(NpcId1, stepNumber1, NpcId2, stepNumber2, QuestId, this.questNpcSlot);
+                    this.SwapNpcSteps(stepId1, stepNumber1, stepId2, stepNumber2, QuestId, this.questNpcSlot);
                 }
             });
 
@@ -88,13 +88,13 @@ class Quest {
                     // Prepare data
                     let QuestId = this.questDdbId;
 
-                    let NpcId1 = this.npcs[index].npcDdbId;
+                    let stepId1 = this.npcs[index].stepId;
                     let stepNumber1 = this.npcs[index].npcStep;
 
-                    let NpcId2 = this.npcs[index + 1].npcDdbId;
+                    let stepId2 = this.npcs[index + 1].stepId;
                     let stepNumber2 = this.npcs[index + 1].npcStep;
                     // Ajax request
-                    this.SwapNpcSteps(NpcId1, stepNumber1, NpcId2, stepNumber2, QuestId, this.questNpcSlot);
+                    this.SwapNpcSteps(stepId1, stepNumber1, stepId2, stepNumber2, QuestId, this.questNpcSlot);
                 }
             });
 
@@ -133,15 +133,15 @@ class Quest {
             });
     }
 
-    SwapNpcSteps(NpcId1, stepNumber1, NpcId2, stepNumber2, QuestId, container) {
+    SwapNpcSteps(stepId1, stepNumber1, stepId2, stepNumber2, QuestId, container) {
         const url = 'index.php?page=update-quest-step';
         const data = {
             quest_Id: QuestId,
 
-            NPC_Id_1: NpcId1,
+            step_id_1: stepId1,
             step_Number_1: stepNumber1,
 
-            NPC_Id_2: NpcId2,
+            step_id_2: stepId2,
             step_Number_2: stepNumber2
         };
         const requestOptions = {
