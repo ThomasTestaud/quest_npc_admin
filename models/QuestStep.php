@@ -4,6 +4,40 @@ namespace Models;
 
 class QuestStep extends Database
 {
+    public function getAllQuestSteps()
+    {
+
+        $req = "SELECT `step_number`, `id_quest`, `id_npc`, `name`, `image`, quest_steps.id as id
+                FROM `quest_steps`
+                JOIN `npcs`
+                ON id_npc = npcs.id
+                ORDER BY step_number";
+
+        $params = [];
+
+        $query = $this->bdd->prepare($req);
+        $query->execute($params);
+        return $query->fetchAll();
+    }
+
+    public function getAllQuestStepsFromQuest($questId)
+    {
+
+        $req = "SELECT `step_number`, `id_quest`, `id_npc`, `name`, `image`, quest_steps.id as id 
+                FROM `quest_steps`
+                JOIN `npcs`
+                ON id_npc = npcs.id
+                WHERE id_quest = :questId
+                ORDER BY step_number";
+
+        $params = [
+            'questId' => $questId
+        ];
+
+        $query = $this->bdd->prepare($req);
+        $query->execute($params);
+        return $query->fetchAll();
+    }
 
     public function createQuestStep($step_number, $id_quest, $id_npc): void
     {
@@ -23,7 +57,14 @@ class QuestStep extends Database
 
     public function deleteQuestStep($npcId, $questId, $stepNumber): void
     {
-        $req = "DELETE FROM `quest_steps` WHERE id_npc = :npcId AND id_quest = :questId AND step_number = :stepNumber";
+        $req = "DELETE FROM `quest_steps` 
+                WHERE id_npc = :npcId 
+                AND id_quest = :questId 
+                AND step_number = :stepNumber;
+
+                UPDATE `quest_steps`
+                SET step_number = step_number - 1
+                WHERE step_number > :stepNumber AND id_quest = :questId";
 
         $params = [
             'npcId' => $npcId,

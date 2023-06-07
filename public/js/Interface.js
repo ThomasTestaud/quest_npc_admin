@@ -39,6 +39,7 @@ class Interface {
             // Display the arrows
             npc.arrowUpIcon.classList.remove('none');
             npc.arrowDownIcon.classList.remove('none');
+            npc.dialogueIcon.classList.add('none');
         });
         // Show form and hide infos
         quest.questInfo.classList.add('none');
@@ -56,6 +57,7 @@ class Interface {
             quest.penElement.classList.remove('none');
             quest.trashElement.classList.add('none');
             quest.crossElement.classList.add('none');
+            // For NPCs
             quest.npcs.forEach((npc) => {
                 const arr = document.querySelectorAll("#" + npc.minusIcon);
                 arr.forEach((el) => {
@@ -64,6 +66,7 @@ class Interface {
                 // Display the arrows
                 npc.arrowUpIcon.classList.add('none');
                 npc.arrowDownIcon.classList.add('none');
+                npc.dialogueIcon.classList.remove('none');
             });
             // Hide form and show infos
             quest.questInfo.classList.remove('none');

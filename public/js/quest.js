@@ -1,4 +1,4 @@
-import AjaxManager from './ajaxManager.js'
+import DialoguePopup from './dialoguePopup.js'
 
 class Quest {
 
@@ -46,6 +46,8 @@ class Quest {
             newNpc.minusIcon = npc.dataset.npcminusicon;
             newNpc.arrowUpIcon = document.getElementById(npc.dataset.npcarrowup);
             newNpc.arrowDownIcon = document.getElementById(npc.dataset.npcarrowdown);
+            newNpc.stepId = npc.dataset.stepid;
+            newNpc.dialogueIcon = document.getElementById(npc.dataset.dialogueicon);
 
             this.npcs.push(newNpc);
 
@@ -54,6 +56,11 @@ class Quest {
             minusIcon.addEventListener('click', () => {
                 //console.log(this.questNpcSlot);
                 this.RemoveNpcFromQuest(newNpc.npcDdbId, this.questDdbId, newNpc.npcStep, this.questNpcSlot);
+            });
+
+            newNpc.dialogueIcon.addEventListener('click', () => {
+                let popup = new DialoguePopup(newNpc);
+                popup.displayDialogue(newNpc.stepId);
             });
 
         });
@@ -156,6 +163,7 @@ class Quest {
             .then(data => {
                 container.innerHTML = data;
                 this.getAllNPC();
+                console.log(data);
             })
             .catch(error => {
                 console.error('Error:', error);

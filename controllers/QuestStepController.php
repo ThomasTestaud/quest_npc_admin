@@ -71,30 +71,25 @@ class QuestStepController
         $this->fetchNpcSlot($questId);
     }
 
-    private function fetchNpcSlot(int $id_quest)
+    private function fetchNpcSlot(int $questId)
     {
-        $Models = new \Models\Quest();
-        $QuestArray = $Models->getAllQuest();
+        // Get all quests_steps
+        $Models = new \Models\QuestStep();
+        $stepArray = $Models->getAllQuestStepsFromQuest($questId);
 
-        // Initialise variables, adapter for the view
-        $quest = [
-            'quest_id' => $id_quest
-        ];
-        $steps = [];
+        $quest['quest_id'] = $questId;
+        $quest['npcs'] = [];
 
-        foreach ($QuestArray as $element) {
-            $steps[] = [
-                'quest_id' => $element['quest_id'],
-                'step_number' => $element['step_number'],
-                'npc_id' => $element['npc_id'],
-                'npc_name' => $element['npc_name'],
-                'npc_image' => $element['npc_image']
+        foreach ($stepArray as $step) {
+            $quest['npcs'][] = [
+                'quest_id' => $step['id_quest'],
+                'step_number' => $step['step_number'],
+                'npc_id' => $step['id_npc'],
+                'npc_name' => htmlspecialchars($step['name']),
+                'npc_image' => $step['image'],
+                'step_id' => $step['id']
             ];
         }
-        // Sort $steps array by the 'step_number' column
-        usort($steps, function ($a, $b) {
-            return $a['step_number'] <=> $b['step_number'];
-        });
 
         require 'views/_npc_inside_quest_cards.phtml';
     }

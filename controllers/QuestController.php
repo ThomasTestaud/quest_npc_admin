@@ -12,51 +12,40 @@ class QuestController
         $Models = new \Models\NPC();
         $NPCs = $Models->getAllNPC();
 
-        // Get 
-
-        /*
+        // Get all quests
         $Models = new \Models\Quest();
-        $QuestArray = $Models->getAllQuest();
+        $questArray = $Models->getAllQuest();
 
+        // Get all quests_steps
+        $Models = new \Models\QuestStep();
+        $stepArray = $Models->getAllQuestSteps();
 
-        // Initialise variables
         $quests = [];
-        $steps = [];
+        foreach ($questArray as $quest) {
 
-        $lastId = 0;
-
-        foreach ($QuestArray as $element) {
-            // Push the new quest only if no already present in the $quests array
-            if ($element['quest_id'] != $lastId) {
-                $lastId = $element['quest_id'];
-                $quests[] = [
-                    'quest_id' => $element['quest_id'],
-                    'quest_number' => $element['quest_number'],
-                    'quest_name' => htmlspecialchars($element['quest_name']),
-                    'money_reward' => $element['money_reward'],
-                    'experience_reward' => $element['experience_reward'],
-                ];
+            $steps = [];
+            foreach ($stepArray as $step) {
+                if ($quest['quest_id'] === $step['id_quest']) {
+                    $steps[] = [
+                        'quest_id' => $step['id_quest'],
+                        'step_number' => $step['step_number'],
+                        'npc_id' => $step['id_npc'],
+                        'npc_name' => htmlspecialchars($step['name']),
+                        'npc_image' => $step['image'],
+                        'step_id' => $step['id']
+                    ];
+                }
             }
 
-            $steps[] = [
-                'quest_id' => $element['quest_id'],
-                'step_number' => $element['step_number'],
-                'npc_id' => $element['npc_id'],
-                'npc_name' => htmlspecialchars($element['npc_name']),
-                'npc_image' => $element['npc_image']
+            $quests[] = [
+                'quest_id' => $quest['quest_id'],
+                'quest_number' => $quest['quest_number'],
+                'quest_name' => htmlspecialchars($quest['quest_name']),
+                'money_reward' => $quest['money_reward'],
+                'experience_reward' => $quest['experience_reward'],
+                'npcs' => $steps
             ];
         }
-        // Sort $steps array by the 'step_number' column
-        usort($steps, function ($a, $b) {
-            return $a['step_number'] <=> $b['step_number'];
-        });
-        */
-
-        // Get all quests
-        $Models = new \Models\Quest();
-        $QuestArray = $Models->getAllQuest2();
-
-        // Get all quests
 
         $JavaScript = 'manageQuest.js';
         $template = "views/quest_view.phtml";
