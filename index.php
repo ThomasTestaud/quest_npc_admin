@@ -81,6 +81,17 @@ if (array_key_exists('page', $_GET)) {
             $controller->updateDialogue();
             break;
 
+            // Crowdfunding accounts
+        case 'create-account':
+            $controller = new Controllers\AccountController();
+            $controller->createAccount();
+            break;
+
+        case 'activate-account':
+            $controller = new Controllers\AccountController();
+            $controller->activateAccount();
+            break;
+
         default:
             header('Location: index.php?page=NPC');
             exit;

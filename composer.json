@@ -1,0 +1,17 @@
+{
+    "name": "mac/admin_npc_1.1",
+    "autoload": {
+        "psr-4": {
+            "Mac\\AdminNpc11\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Thomas Testaud",
+            "email": "thomas.testaud@hotmail.fr"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.8"
+    }
+}

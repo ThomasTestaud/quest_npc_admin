@@ -1,0 +1,18 @@
+<div class="form-type-1">
+    <h2>Welcome!</h2>
+    <?php require "views/_errors.phtml" ?>
+    <p>Since this is your first time here, please create a password for future connexions.</p>
+    <form action="index.php?page=create-NPC" method="POST">
+        <span>
+            <label for="NPC-name">NPC's name:</label>
+            <input type="text" name="NPC-name" id="NPC-name" value="<?php echo isset($_POST['NPC-name']) ? $_POST['NPC-name'] : ''; ?>">
+        </span>
+        <span>
+            <label for="NPC-image">NPC's photo:</label>
+            <input type="file" id="NPC-image" name="NPC-image" accept="image/png, image/jpeg">
+        </span>
+        <span>
+            <input type="submit" name="submit" value="Create NPC">
+        </span>
+    </form>
+</div>
