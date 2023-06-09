@@ -28,7 +28,7 @@ class AccountController
                 //$email = $_POST['email']; // PROD
 
                 $token = bin2hex(random_bytes(32));
-                $link = "http://localhost:3000/STAGE/admin_npc_1.1/index.php?page=activate-account&token=" . $token . "&email=" . $email;
+                $link = "http://localhost:3000/STAGE/user_end/index.php?page=activate-account&token=" . $token . "&email=" . $email;
 
                 // Check if an email dosen't already exist in the ddb
                 $Models = new \Models\Account();
