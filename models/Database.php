@@ -2,8 +2,6 @@
 
 namespace Models;
 
-require('config/config.php');
-
 class Database
 {
 

@@ -24,11 +24,11 @@ class AccountController
 
             if (empty($this->errors)) {
 
-                $email = "a85434c57b-8fa285@inbox.mailtrap.io"; // DEV
-                //$email = $_POST['email']; // PROD
+                //$email = "a85434c57b-8fa285@inbox.mailtrap.io"; // DEV
+                $email = $_POST['email']; // PROD
 
                 $token = bin2hex(random_bytes(32));
-                $link = "http://localhost:3000/STAGE/user_end/index.php?page=activate-account&token=" . $token . "&email=" . $email;
+                $link = DOMAIN_NAME . "index.php?page=activate-account&token=" . $token . "&email=" . $email;
 
                 // Check if an email dosen't already exist in the ddb
                 $Models = new \Models\Account();
@@ -63,14 +63,14 @@ class AccountController
         try {
             // Configure SMTP settings for Mailtrap
             $mailer->isSMTP();
-            $mailer->Host = 'sandbox.smtp.mailtrap.io';
-            $mailer->Port = 2525;
-            $mailer->SMTPAuth = true;
-            $mailer->Username = 'a7eab8014df032';
-            $mailer->Password = 'da6890139d19ad';
+            $mailer->Host = MAIL_HOST;
+            $mailer->Port = MAIL_PORT;
+            $mailer->SMTPAuth = MAIL_SMTP_AUTHORISATION;
+            $mailer->Username = MAIL_USERNAME;
+            $mailer->Password = MAIL_PASSWORD;
 
             // Set sender and recipient
-            $mailer->setFrom('sender@example.com', 'John Doe');
+            $mailer->setFrom(MAIL_SENDER_ADRESS, MAIL_SENDER_NAME);
             $mailer->addAddress($email);
 
             // Set email content
