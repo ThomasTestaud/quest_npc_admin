@@ -17,15 +17,13 @@ class AccountController
 
         if (isset($_POST['email'])) {
 
-
             if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $this->errors[] = 'The format of the email is not correct';
             }
 
             if (empty($this->errors)) {
 
-                //$email = "a85434c57b-8fa285@inbox.mailtrap.io"; // DEV
-                $email = $_POST['email']; // PROD
+                $email = $_POST['email'];
 
                 $token = bin2hex(random_bytes(32));
                 $link = DOMAIN_NAME . "index.php?page=activate-account&token=" . $token . "&email=" . $email;
@@ -75,7 +73,7 @@ class AccountController
 
             // Set email content
             $mailer->Subject = 'Activate your account!';
-            $mailer->Body = 'Activate your account by clicking onto that link:' . $link;
+            $mailer->Body = 'Activate your account by clicking onto that link: <a href="' . $link . '">Validate your account</a>';
 
             // Send the email
             $mailer->send();
